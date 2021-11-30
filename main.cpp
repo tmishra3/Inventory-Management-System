@@ -143,7 +143,6 @@ int enterChoice()
 
 }
 
-
 void createTextFile( fstream& PartFile )
 {
 
@@ -230,19 +229,6 @@ void createTextFile( fstream& PartFile )
    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void updateRecord( fstream& ENTERFile)
 {
 	int partNumber;
@@ -313,23 +299,6 @@ void updateRecord( fstream& ENTERFile)
 	} while (partNumber!=0);
 	cout << endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void addRecord( fstream& ENTERFile)
 {
