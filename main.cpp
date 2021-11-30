@@ -36,7 +36,6 @@ void outputLine( ostream&, const Product & );
 void calculateTotal( fstream& );
 int getPartNumber( const char * const );
 
-
 enum Choices { CREATE = 1, DISPLAY,ENTER,DELETE,UPDATE,CALCULATE, END };
 
 int main()
@@ -103,7 +102,6 @@ void calculateTotal(fstream& ENTERFile)
 			totalQuan+=prod.getQuantity();
 		}
 
-
 		   ENTERFile.read( reinterpret_cast< char * >( &prod ), sizeof( Product ) );
 	}
 	ENTERFile.clear();
@@ -133,11 +131,8 @@ int enterChoice()
 
 	int menuChoice;
 
-	//do
-	//{
 		cout << "\nChoice: ";
 		cin >> menuChoice; // input menu selection from user
-	//} while ((menuChoice!=1)||(menuChoice!=2)||(menuChoice!=3)||(menuChoice!=4));
 
    return menuChoice;
 
@@ -153,7 +148,6 @@ void createTextFile( fstream& PartFile )
    cout << "\nEnter the file name: ";
    cin >> nameFile;
    ofstream newfile;
-   //fstream PartFile;
    PartFile.open(nameFile, ios::out|ios::in|ios::binary);
    
 		
@@ -165,15 +159,9 @@ void createTextFile( fstream& PartFile )
 		{
 			cout<<"could not open file"<<nameFile<<endl;
 		}
-
-
-   
-  
-	   //PartFile.open(nameFile, ios::app|ios::out|ios::in|ios::binary);
    
 	   for ( int i = 0; i < 100; i++ )
        {
-		   //prod.setPartNumber(i);
 		   newfile.write( reinterpret_cast< const char * >( &prod ),sizeof( Product ) );
        }
 
@@ -183,8 +171,6 @@ void createTextFile( fstream& PartFile )
    }
    else
 	   cout << "file open success.\n\n";
-
-   //cout <<endl<<"*"<<nameFile<<" opened successfully*\n\n";
 
    ofstream outPrintFile( "print.txt", ios::out );
    // exit program if ofstream cannot create file
@@ -219,14 +205,6 @@ void createTextFile( fstream& PartFile )
       // read next record from record file
       PartFile.read( reinterpret_cast< char * >( &proddata ), 
          sizeof( Product ) );
-
-		 
-   } // end while
-   //readPartFile.close();
-   //readPartFile = PartFile;
-   //cout <<endl<<nameFile<<" created 100 records successfully.\n\n";
-
-   
 }
 
 void updateRecord( fstream& ENTERFile)
@@ -250,34 +228,14 @@ void updateRecord( fstream& ENTERFile)
    ENTERFile.read( reinterpret_cast< char * >( &prod ), 
       sizeof( Product ) );
 
-   // ENTER record
-   //if ( prod.getPartNumber() != 0 ) 
-   //{
-     // outputLine( cout, prod ); // display the record
-
 	  prod.setPartNumber(partNumber);
 	  string compstr = prod.getToolName();
-
-	  //request user to enter part name
-	 /*
-		cout << "Enter the new tool name: ";
-		string pnm;
-		cin>>pnm;
-		prod.setToolName(pnm);
-*/
-      // request user to enter cost
 	  cout << "Enter the new quantity and new price: ";
       int qty;
 	  double oldcost; 
       cin >>qty>>oldcost;
 	  //double cost = prod.getCost();
 	  prod.setCost(oldcost);
-
-	  //cout << "\nEnter quantity/new quantity of product:";
-      //int qty; 
-      //cin >> qty;
-      // ENTER record balance
-      //int oldqty = prod.getQuantity();
 
       prod.setQuantity(qty );
       //outputLine( cout, prod ); // display the record
@@ -290,12 +248,6 @@ void updateRecord( fstream& ENTERFile)
          sizeof( Product ) );
 
 	  ENTERFile.clear();
-   //} // end if
-	  /**
-   else // display error if account does not exist
-      cerr << "partNumber #" << partNumber 
-         << " has no information." << endl;
-		 **/
 	} while (partNumber!=0);
 	cout << endl;
 }
@@ -321,11 +273,6 @@ void addRecord( fstream& ENTERFile)
    ENTERFile.read( reinterpret_cast< char * >( &prod ), 
       sizeof( Product ) );
 
-   // ENTER record
-   //if ( prod.getPartNumber() != 0 ) 
-   //{
-     // outputLine( cout, prod ); // display the record
-
 	  prod.setPartNumber(partNumber);
 	  string compstr = prod.getToolName();
 
@@ -346,12 +293,6 @@ void addRecord( fstream& ENTERFile)
 	  //double cost = prod.getCost();
 	  prod.setCost(oldcost);
 
-	  //cout << "\nEnter quantity/new quantity of product:";
-      //int qty; 
-      //cin >> qty;
-      // ENTER record balance
-      //int oldqty = prod.getQuantity();
-
       prod.setQuantity(qty );
       //outputLine( cout, prod ); // display the record
 
@@ -363,12 +304,6 @@ void addRecord( fstream& ENTERFile)
          sizeof( Product ) );
 
 	  ENTERFile.clear();
-   //} // end if
-	  /**
-   else // display error if account does not exist
-      cerr << "partNumber #" << partNumber 
-         << " has no information." << endl;
-		 **/
 	} while (partNumber!=0);
 	cout << endl;
 }
